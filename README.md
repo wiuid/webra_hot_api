@@ -8,7 +8,9 @@
 # 将下载下来的webra_top.zip 进行解压缩
 unzip webra_top.zip
 cd webra_top
+# 赋予执行权限，init是用shell语句写的
 chmod +x init
+
 ./init
 Usage: ./init.sh {start|stop|restart|status}
 # 启动
