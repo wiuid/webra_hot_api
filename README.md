@@ -19,6 +19,12 @@ Usage: ./init.sh {start|stop|restart|status}
 ./init restart
 # 查看状态
 ./init status
+
+# 查看端口监听是否存在
+ss -tanpl
+State                 Recv-Q                Send-Q                               Local Address:Port                               Peer Address:Port               Process                                         
+LISTEN                0                     128                                      127.0.0.1:5000                                    0.0.0.0:*                   users:(("top",pid=106379,fd=3))                
+
 ```
 
 
