@@ -4,6 +4,9 @@
 热门网站的热榜
 
 # github发版的版本参考如下方法
+
+- 😆 发版使用pyinstaller 进行打包，不太了解这些东西，以后再研究研究怎么把包的大小搞下去
+
 ```shell
 # 将下载下来的webra_top.zip 进行解压缩
 unzip webra_top.zip
