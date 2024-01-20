@@ -1,7 +1,8 @@
 
 
-# webra_hot
-热门网站的热榜
+# webra_hot_api
+热门网站的热榜API
+免部署，直接使用。
 
 # github发版的版本参考如下方法
 
