@@ -125,7 +125,7 @@ def get_html(url, headers, res_data_type, proxy_ip=None):
     if proxy_ip is None:
         response = requests.get(url, headers=headers, verify=False)
     else:
-        write_file("./nohup.out", datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "获取到的代理ip： " + proxy_ip， "a")
+        write_file("./nohup.out", datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "获取到的代理ip： " + proxy_ip, "a")
         proxy = {
             'https': proxy_ip
         }
