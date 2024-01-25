@@ -70,7 +70,36 @@ ss -tanpl
 State                 Recv-Q                Send-Q                               Local Address:Port                               Peer Address:Port               Process                                         
 LISTEN                0                     128                                      127.0.0.1:5000                                    0.0.0.0:*                   users:(("top",pid=106379,fd=3))                
 
+# 测试正常运行
+curl 127.0.0.1:5000/zhihu
+
 ```
+
+返回数据结构如下
+
+```json
+{
+  "secure":true,
+  "title":"知乎热榜",
+  "update_time":"2024-01-24 21:25:42",
+  "data":[
+    {
+    "index":1,
+    "title":"腾讯以 64.2 亿元拿下北京海淀区地块，如何看待此举？",
+    "url":"https://www.zhihu.com/question/640924601",
+    "hot":"1156W"
+    },
+    {
+    "index":2,
+    "title":"江西新余一楼房发生火灾，已致 39 人遇难，目前情况如何？",
+    "url":"https://www.zhihu.com/question/641016841",
+    "hot":"356W"
+    },
+    {}
+  ]
+}
+```
+
 
 ## 2、代码使用方法
 https://www.webra.top/1371.html
