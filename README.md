@@ -1,7 +1,7 @@
 
 
 <p align="center">
-  <a href="https://webra.top"><img src="https://github.com/wiuid/webra_hot_api/assets/61615298/554ab508-c376-4f4f-b67f-ed726599caf4" alt="webra_top_api_logo" width="80" /></a>
+  <a href="https://webra.top" target="_blank"><img src="https://github.com/wiuid/webra_hot_api/assets/61615298/554ab508-c376-4f4f-b67f-ed726599caf4" alt="webra_top_api_logo" width="80" /></a>
   <br>
   <span style="font-size: 24px;"><strong>webra_hot_api</strong></span>
 </p>
