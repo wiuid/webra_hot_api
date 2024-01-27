@@ -77,10 +77,10 @@
 
 ```shell
 # 将下载下来的webra_top.zip 进行解压缩
-unzip webra_top.zip
-cd webra_top
+unzip WebraTopApi_linux_amd64_v1.1.5.zip
+cd WebraTopApi_linux_amd64_v1.1.5
 # 赋予执行权限，init是用shell语句写的
-chmod +x init
+chmod +x ./*
 
 ./init
 Usage: ./init.sh {start|stop|restart|status}
