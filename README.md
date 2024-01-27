@@ -41,6 +41,32 @@
 | ip:5000/history      | 历史上的今天（魔法） |✅|
 | ip:5000/douban       | 豆瓣新片榜           |✅|
 | ip:5000/ghbk         | 果核剥壳             |✅|
+|ip:5000/it/day                |    IT之家_日榜| ✅|
+|ip:5000/it/week               |     IT之家_周榜| ✅|
+|ip:5000/it/hot                |    IT之家_热评榜| ✅|
+|ip:5000/it/month              |      IT之家_月榜| ✅|
+|ip:5000/tencent               |    腾讯新闻热点榜| ✅|
+|ip:5000/wxbook/soar           |         微信读书_飙升榜| ✅|
+|ip:5000/wxbook/new            |        微信读书_新书榜| ✅|
+|ip:5000/wxbook/god            |        微信读书_神作榜| ✅|
+|ip:5000/wxbook/novel          |          微信读书_小说榜| ✅|
+|ip:5000/wxbook/hot            |        微信读书_热搜榜| ✅|
+|ip:5000/wxbook/potential      |              微信读书_潜力榜| ✅|
+|ip:5000/wxbook/all            |        微信读书_总榜| ✅|
+|ip:5000/qidian/yuepiao        |            起点中文网_月票榜| ✅|
+|ip:5000/qidian/changxiao      |              起点中文网_畅销榜| ✅|
+|ip:5000/qidian/zhisu          |          起点中文网_阅读指数榜| ✅|
+|ip:5000/qidian/tuijina        |            起点中文网_推荐榜| ✅|
+|ip:5000/qidian/shoucang       |             起点中文网_收藏榜| ✅|
+|ip:5000/qidian/new            |        起点中文网_签约作者新书榜| ✅|
+|ip:5000/qidian/new_2          |          起点中文网_公众作家新书榜| ✅|
+|ip:5000/qidian/yuepiao_vip    |                起点中文网_月票_VIP榜| ✅|
+|ip:5000/zongheng/yuepiao      |              纵横中文网_月票榜| ✅|
+|ip:5000/zongheng/24h          |          纵横中文网_24h畅销榜| ✅|
+|ip:5000/zongheng/new          |          纵横中文网_新书榜| ✅|
+|ip:5000/zongheng/tuijian      |              纵横中文网_推荐榜| ✅|
+|ip:5000/zongheng/new_dingyue  |                  纵横中文网_新书订阅榜| ✅|
+|ip:5000/zongheng/dianji       |             纵横中文网_点击榜| ✅|
 
 # 部署方法
 ## 1、github发版使用方法
