@@ -1,8 +1,8 @@
 """
-@author: webra
+@author: webra/lzm
 @time: 2023/3/27 13:31
 @description:  热榜
-@update: 2024/01/27 15:30:00
+@update: 2024/02/14 15:54:34
 """
 import glob
 import re
@@ -17,6 +17,7 @@ import os
 import urllib3
 
 from flask import Flask
+import logging
 
 if not os.path.exists('./data'):
     os.makedirs('./data')
@@ -28,7 +29,8 @@ global_timeout_file = 24
 proxy_address = ""
 # web服务启动
 app = Flask(__name__)
-
+app.config['LOGGER_NAME'] = 'app'
+app.config['LOGGER_LEVEL'] = logging.NOTSET
 
 # 以utf-8编码读取文件
 def read_file(file_path):
@@ -89,10 +91,14 @@ def random_user_agent():
 
 # 获取代理IP
 def get_proxy_ip():
-    url = "http://api.89ip.cn/tqdl.html?api=1&num=1&port=&address=&isp="
-    response = get_html(url, None, "obj")
-    reg = r'([0-9.:]+)<br>'
-    return re.compile(reg).search(response.text).group(1)
+    if proxy_address != "":
+        url = proxy_address
+        response = get_html(url, None, "dict")
+        proxy_ip = response['data'][0]['ip'] + ":" + str(response['data'][0]['port'])
+        app.logger.warning("获取到的代理ip：" + proxy_ip)
+        return proxy_ip
+    else:
+        return None
 
 """
 url：字符串类型，表示要访问的网址。
@@ -122,7 +128,7 @@ def get_html(url, headers, res_data_type, proxy_ip=None):
             }
             response = requests.get(url, headers=headers, verify=False, proxies=proxy)
         except:
-            print("获取到的代理ip：" + proxy_ip)
+            app.logger.warning("请求失败")
             return 1
     # 根据请求数据类型做数据处理
     if res_data_type == "html":
@@ -176,7 +182,8 @@ def get_file_data(filename):
             del_file(file_name)
             return None
         else:
-            return read_file(file_name)
+            file_contant = json.loads(read_file(file_name))
+            return None if len(file_contant['data']) == 0 else file_contant
     # 不存在文件，返回None
     else:
         # 多个文件，全部删除
@@ -272,7 +279,6 @@ def csdn():
     else:
         return file_content
 
-
 @app.route('/wuai')
 def wuai():
     filename = "wuai_data_*.data"
@@ -287,7 +293,6 @@ def wuai():
             "User-Agent": random_user_agent(),
             'Connection':'close'
         }
-
         request = get_html("https://www.52pojie.cn/forum.php?mod=guide&view=hot", headers, "html", get_proxy_ip())
         if request == 1:
             return file_content
@@ -299,6 +304,7 @@ def wuai():
         return end_json_data(json_data, data_list, filename)
     else:
         return file_content
+
 
 
 # 知乎热榜
@@ -730,6 +736,35 @@ def tencent():
         return file_content
 
 
+@app.route("/wx")
+def wx():
+    filename = "wx_data_*.data"
+    file_content = get_file_data(filename)
+    if file_content is None:
+        json_data = init_json_data("微信热点榜")
+        headers = {
+            'Authorization': "5daa2667123e702941a6d2bd7a5868ab",
+            'User-Agent': random_user_agent()}
+        # WnBe01o371
+        # https://api.tophubdata.com/nodes/@hashid
+        for i in range(0, 200):
+            request = get_html("https://api.tophubdata.com/nodes?p=" + str(i), headers, "dict")
+            
+            write_file("./request.txt", bytes(json.dumps(request), 'utf-8').decode('unicode_escape'), "a")
+
+        # data_list = []
+        # for key in request["idlist"][0]["newslist"][1:51]:
+        #     data_dict = {"index": key["ranking"],
+        #                  "title": key["title"],
+        #                  "url": key["url"],
+        #                  "hot": "{}{}".format(round(int(key["hotEvent"]["hotScore"]) / 10000, 1), "W")}
+        #     # hot = "{}{}".format(round(int(key["hotEvent"]["hotScore"]) / 10000, 1), "W")
+        #     data_list.append(data_dict)
+        # return end_json_data(json_data, data_list, filename)
+    else:
+        return file_content
+
+
 
 @app.route("/wxbook/<rank>")
 def wxbook(rank):
@@ -870,21 +905,12 @@ def zongheng(rank):
         return end_json_data(json_data, data_list, filename)
     else:
         return file_content
-    
-
-
-
-
-
-
-
-
-
 
 
 
 if __name__ == "__main__":
     app.run()
+
 
 
 
